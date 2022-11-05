@@ -13,22 +13,22 @@
 body {
   background: linear-gradient(
     124deg,
-    #ff2400,
-    #e81d1d,
-    #e8b71d,
-    #e3e81d,
-    #1de840,
-    #1ddde8,
-    #2b1de8,
-    #dd00f3,
-    #dd00f3
+    #ff9888,
+    #e77a7a,
+    #e2c975,
+    #e0e278,
+    #7ae48c,
+    #78d2d7,
+    #7a73d8,
+    #d973e2,
+    #d771e0
   );
   background-size: 1800% 1800%;
 
-  -webkit-animation: rainbow 18s ease infinite;
-  -z-animation: rainbow 18s ease infinite;
-  -o-animation: rainbow 18s ease infinite;
-  animation: rainbow 18s ease infinite;
+  -webkit-animation: rainbow 60s ease infinite;
+  -z-animation: rainbow 60s ease infinite;
+  -o-animation: rainbow 60s ease infinite;
+  animation: rainbow 60s ease infinite;
 }
 
 .App {
@@ -36,13 +36,89 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  overflow: hidden;
+  position: relative;
 }
 
 .frames {
   margin: auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  display: flex;
+  flex-direction: row;
   max-width: 600px;
+  position: relative;
+  z-index: 1000;
+}
+
+.rings {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.ring {
+  background-image: url("/tiszuk2.png");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: hue-rotate(180deg);
+  margin: auto;
+}
+
+.rings:first-of-type .ring {
+  width: 350px;
+  height: 350px;
+  animation: hueSpin 10s infinite linear;
+}
+
+.rings:nth-of-type(2) .ring {
+  width: 550px;
+  height: 550px;
+  animation: hueSpin 15s infinite linear;
+}
+
+.rings:nth-of-type(3) .ring {
+  width: 850px;
+  height: 850px;
+  animation: hueSpin 20s infinite linear;
+}
+
+@media screen and (max-width: 900px) {
+  .rings:first-of-type .ring {
+    width: 200px;
+    height: 200px;
+  }
+
+  .rings:nth-of-type(2) .ring {
+    width: 350px;
+    height: 350px;
+  }
+
+  .rings:nth-of-type(3) .ring {
+    display: none;
+  }
+}
+
+@keyframes hueSpin {
+  0% {
+    filter: hue-rotate(0deg);
+    transform: rotate(0deg) scale(1);
+  }
+
+  50% {
+    filter: hue-rotate(180deg);
+    transform: rotate(180deg) scale(0.95);
+  }
+
+  100% {
+    filter: hue-rotate(360deg);
+    transform: rotate(360deg) scale(1);
+  }
 }
 
 .Frame {
@@ -60,10 +136,14 @@ body {
   animation: spin 1s forwards;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 900px) {
   .Frame {
     width: 100px;
     height: 100px;
+  }
+
+  body {
+    background-size: 400% 400%;
   }
 }
 
@@ -118,5 +198,55 @@ body {
   }
   100% {
     background-position: 0% 82%;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  @keyframes rainbow {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 100%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  @-webkit-keyframes rainbow {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 100%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  @-moz-keyframes rainbow {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 100%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  @-o-keyframes rainbow {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 100%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
   }
 }
