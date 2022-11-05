@@ -68,6 +68,7 @@ body {
   flex-direction: column;
   justify-content: center;
   overflow: hidden;
+  filter: blur(3px);
 }
 
 .ring {

@@ -2,7 +2,6 @@ import styles from "./App.module.css";
 import Frame from "./components/Frame/Frame";
 
 function App() {
-  // const firebase = firebase;
   let frames = [];
   const frameCount = 1;
   for (let i = 1; i <= frameCount; i++) {
