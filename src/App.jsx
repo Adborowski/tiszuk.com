@@ -1,31 +1,15 @@
 import styles from "./App.module.css";
-import { useState } from "react";
+import Frame from "./components/Frame/Frame";
 
 function App() {
-  const [isAnimating, setIsAnimating] = useState(false);
-
-  const sound = new Audio("/ae.mp3");
-
-  const frameClicked = (frame) => {
-    console.log("click");
-    setIsAnimating(true);
-    sound.play();
-  };
-
-  const animationEnded = (frame) => {
-    console.log("end");
-    setIsAnimating(false);
-  };
+  let frames = [];
+  for (let i = 1; i <= 9; i++) {
+    frames.push(<Frame key={i} />);
+  }
 
   return (
     <div className={styles.App}>
-      <div
-        onClick={frameClicked}
-        onAnimationEnd={animationEnded}
-        className={`${styles.imageFrame} ${
-          isAnimating ? styles.animating : ""
-        }`}
-      ></div>
+      <div className={styles.frames}>{frames}</div>
     </div>
   );
 }
