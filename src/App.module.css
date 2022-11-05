@@ -39,11 +39,19 @@ body {
   display: block;
   width: 200px;
   height: 200px;
-  background-image: url("tiszuk1.png");
+  background-image: url("/tiszuk1.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  animation: spin 10s infinite linear;
+  /* animation: spin 10s infinite linear; */
+}
+
+.animating {
+  animation: spin 1s forwards;
+}
+
+.MusicPlayer {
+  opacity: 0.01;
 }
 
 @keyframes spin {
