@@ -1,6 +1,8 @@
 import styles from "./Posts.module.css";
 import { initializeApp } from "firebase/app";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import SimpleDateTime from "react-simple-timestamp-to-date";
+
 import {
   getFirestore,
   collection,
@@ -26,27 +28,35 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 const postsRef = collection(db, "posts");
-
 const q = query(postsRef);
-const querySnapshot = await getDocs(q);
-let posts = [];
-querySnapshot.forEach((doc) => {
-  // doc.data() is never undefined for query doc snapshots
-  console.log(doc.id, " => ", doc.data());
-  posts.push(doc.data());
-});
-
-console.log(posts);
 
 const Posts = () => {
-  //
-  const submitForm = async (e) => {
+  const [posts, setPosts] = useState([]);
+
+  const fetchPosts = async () => {
+    await getDocs(collection(db, "posts")).then((querySnapshot) => {
+      const newData = querySnapshot.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+      console.log(newData);
+      setPosts(newData);
+    });
+  };
+
+  useEffect(() => {
+    fetchPosts();
+  }, []);
+
+  const submitForm = (e) => {
     e.preventDefault();
-    const docRef = await addDoc(collection(db, "posts"), {
+    const docRef = addDoc(collection(db, "posts"), {
       name: author,
       content: content,
+      timestamp: Date.now(),
+    }).then((response) => {
+      console.log(console.log("Document written with ID: ", response.id));
     });
-    console.log("Document written with ID: ", docRef.id);
   };
 
   const [author, setAuthor] = useState("");
@@ -65,6 +75,9 @@ const Posts = () => {
       {posts.map((post) => {
         return (
           <div className={styles.post} key={post.content}>
+            <div className={styles.date}>
+              <SimpleDateTime>{post.timestamp / 1000}</SimpleDateTime>
+            </div>
             <div className={styles.author}>{post.name}</div>
             {post.content}
           </div>

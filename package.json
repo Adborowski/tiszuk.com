@@ -15,6 +15,7 @@
     "react-audio-player": "^0.17.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.3",
+    "react-simple-timestamp-to-date": "^1.0.3",
     "react-youtube": "^10.0.0",
     "vite-plugin-html-config": "^1.0.11"
   },
