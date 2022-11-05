@@ -1,0 +1,19 @@
+.Posts {
+  /* border: 1px solid white; */
+  max-width: 500px;
+  margin: auto;
+}
+
+.post {
+  margin-bottom: 3px;
+  padding: 6px;
+  background-color: white;
+  border-radius: 3px;
+}
+
+.author {
+  font-size: 12px;
+  margin-bottom: 3px;
+  font-weight: 800;
+  color: blue;
+}

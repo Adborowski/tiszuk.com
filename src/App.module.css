@@ -4,6 +4,7 @@
   box-sizing: border-box;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+  font-family: "Helvetica";
 }
 
 *::-webkit-scrollbar {
@@ -11,6 +12,7 @@
 }
 
 body {
+  height: 100vw;
   background: linear-gradient(
     124deg,
     #ff9888,
@@ -29,6 +31,13 @@ body {
   -z-animation: rainbow 60s ease infinite;
   -o-animation: rainbow 60s ease infinite;
   animation: rainbow 60s ease infinite;
+}
+
+:global(.main) {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
 }
 
 .App {
@@ -83,8 +92,8 @@ body {
 }
 
 .rings:nth-of-type(3) .ring {
-  width: 850px;
-  height: 850px;
+  width: 825px;
+  height: 825px;
   animation: hueSpin 20s infinite linear;
 }
 
@@ -207,7 +216,7 @@ body {
       background-position: 0% 50%;
     }
     50% {
-      background-position: 100% 100%;
+      background-position: 100% 50%;
     }
     100% {
       background-position: 0% 50%;
