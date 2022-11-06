@@ -12,6 +12,16 @@
   display: grid;
   grid-template-columns: 75px 1fr;
   grid-gap: 12px;
+  animation: fadeIn 1s forwards;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .textContent {

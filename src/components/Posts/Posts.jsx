@@ -21,6 +21,7 @@ import {
   getDocs,
   query,
   where,
+  onSnapshot,
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -38,9 +39,6 @@ const db = getFirestore(app);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
-const postsRef = collection(db, "posts");
-const q = query(postsRef);
-
 const Posts = () => {
   const [posts, setPosts] = useState([]);
   const [user, loading, error] = useAuthState(auth);
@@ -49,18 +47,17 @@ const Posts = () => {
     console.log(user ? "Authed user: " + user.displayName : "No Auth");
   }, [user]);
 
-  const fetchPosts = async () => {
-    await getDocs(collection(db, "posts")).then((querySnapshot) => {
-      const newData = querySnapshot.docs.map((doc) => ({
-        ...doc.data(),
-        id: doc.id,
-      }));
-      setPosts(newData);
+  const q = query(collection(db, "posts"));
+  const unsubscribe = onSnapshot(q, (querySnapshot) => {
+    const posts = [];
+    querySnapshot.forEach((doc) => {
+      posts.push(doc.data());
     });
-  };
+    setPosts(posts);
+  });
 
   useEffect(() => {
-    fetchPosts();
+    unsubscribe;
   }, []);
 
   const getDayOfWeek = (timestamp) => {
