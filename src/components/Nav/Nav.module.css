@@ -1,7 +1,7 @@
 .Nav {
   z-index: 5000;
   margin-bottom: 18px;
-  width: 100%;
+  width: 200px;
   height: 50px;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -25,4 +25,9 @@
 .Nav .NavLink span {
   display: block;
   text-align: center;
+  font-family: var(--font-display);
+}
+
+:global(.active) span {
+  text-decoration: underline;
 }

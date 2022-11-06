@@ -15,9 +15,8 @@ git add .
 git commit -m "Auto-deploy"
 git push
 echo ""
-echo "${R2}♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ${NORMAL}"
+echo "${R2}☰☱☲☳☴☵☶☷☰☱☲☳☴☵☶☷☰☱☲☳☴☵☶☷☰☱☲☳☴☵☶☷${NORMAL}"
 echo "${R3}Deployed to production!"
 echo "${R7}tiszuk.com"
-echo "${R2}♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ${NORMAL}"
-echo ""
+echo "${R2}☰☱☲☳☴☵☶☷☰☱☲☳☴☵☶☷☰☱☲☳☴☵☶☷☰☱☲☳☴☵☶☷${NORMAL}"
 

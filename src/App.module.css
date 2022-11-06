@@ -11,8 +11,24 @@
   display: none;
 }
 
+@font-face {
+  font-family: "Basteleur";
+  src: url("/Basteleur.otf") format("opentype");
+}
+
+:root {
+  --font-display: "Basteleur";
+}
+
 .Twitszuk {
   position: relative;
+}
+
+.Twitszuk h1 {
+  color: black;
+  text-align: center;
+  margin-bottom: 18px;
+  font-family: var(--font-display);
 }
 
 body {
