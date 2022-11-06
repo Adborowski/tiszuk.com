@@ -17,6 +17,7 @@ import {
   addDoc,
 } from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { useNavigate } from "react-router";
 
 const firebaseConfig = {
   apiKey: "AIzaSyC3A9C3kunccnIazu2gc2QseIFcKDTnfNY",

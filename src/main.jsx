@@ -1,29 +1,19 @@
 import React from "react";
-import { useState } from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
-import { createBrowserRouter, RouterProvider, Route } from "react-router-dom";
-import { initializeApp } from "firebase/app";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./firebase.js";
-import Login from "../src/components/Login/Login";
 import Twitszuk from "./routes/Twitszuk";
-import Posts from "/src/components/Posts/Posts";
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />,
-  },
-  {
-    path: "/posts",
-    element: <Posts />,
-  },
-]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <div className={"main"}>
-      <RouterProvider router={router} />
+      <Router>
+        <Routes>
+          <Route path="/" element={<App />} />
+          <Route path="/twitszuk" element={<Twitszuk />} />
+        </Routes>
+      </Router>
     </div>
   </React.StrictMode>
 );

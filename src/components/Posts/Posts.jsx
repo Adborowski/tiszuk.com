@@ -64,31 +64,8 @@ const Posts = () => {
     fetchPosts();
   }, []);
 
-  const submitForm = (e) => {
-    e.preventDefault();
-    const docRef = addDoc(collection(db, "posts"), {
-      name: author,
-      content: content,
-      timestamp: Date.now(),
-    }).then((response) => {
-      console.log(console.log("Document written with ID: ", response.id));
-    });
-  };
-
-  const [author, setAuthor] = useState("");
-  const [content, setContent] = useState("");
-
-  const onContentChange = (e) => {
-    setContent(e.target.value);
-  };
-
-  const onAuthorChange = (e) => {
-    setAuthor(e.target.value);
-  };
-
   return (
     <div className={styles.Posts}>
-      <Login />
       {posts.map((post) => {
         return (
           <div className={styles.post} key={post.content}>
@@ -100,21 +77,6 @@ const Posts = () => {
           </div>
         );
       })}
-      <div className={styles.Writer}>
-        <form onSubmit={submitForm}>
-          <input
-            placeholder="Your Name"
-            onChange={onAuthorChange}
-            name="author"
-          ></input>
-          <input
-            placeholder="Your Message"
-            onChange={onContentChange}
-            name="content"
-          ></input>
-          <button type="submit">Submit </button>
-        </form>
-      </div>
     </div>
   );
 };

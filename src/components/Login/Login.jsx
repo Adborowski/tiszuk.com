@@ -11,25 +11,22 @@ const Login = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (loading) {
-      // maybe trigger a loading screen
-      return;
-    }
-    // if (user) navigate("/posts");
-  }, [user, loading]);
-
+    console.log(user ? "Authed user: " + user.displayName : "No Auth");
+  }, [user]);
+  // const first = str.split(' ')[0]
   return (
     <div className={styles.authControls}>
       {!user && (
         <button className="login__btn login__google" onClick={signInWithGoogle}>
-          Sign In with Google
+          <span>Sign In with Google</span>
         </button>
       )}
       {user && (
-        <div className={styles.welcome}>Welcome, {user.displayName}</div>
+        <button onClick={logout}>
+          {" "}
+          <span>Sign Out</span>
+        </button>
       )}
-      {loading && <div className={styles.welcome}>Please wait...</div>}
-      {user && <button onClick={logout}>Sign Out</button>}
     </div>
   );
 };
