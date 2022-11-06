@@ -11,6 +11,10 @@
   display: none;
 }
 
+.Twitszuk {
+  position: relative;
+}
+
 body {
   height: 100vw;
   background: linear-gradient(
@@ -44,6 +48,13 @@ body {
 
 .main {
   max-height: 100vh;
+  padding: 12px;
+}
+
+@media screen and (max-width: 600px) {
+  .main {
+    padding: 12px;
+  }
 }
 
 .navPane {

@@ -7,16 +7,21 @@
 
 .post {
   margin-bottom: 6px;
-  padding: 6px;
+  padding: 12px;
   background-color: white;
   border-radius: 3px;
 
   display: grid;
   grid-template-columns: 75px 1fr;
-  grid-gap: 6px;
+  grid-gap: 12px;
 }
 
 .textContent {
+}
+
+.postMetadata {
+  /* border: 1px solid red; */
+  margin-bottom: 6px;
 }
 
 .imageContent {
@@ -30,14 +35,17 @@
 }
 
 .date {
-  font-size: 12px;
-  margin-bottom: 3px;
+  font-size: 14px;
+  display: inline-block;
+  text-align: left;
+  /* color: white; */
 }
 
 .author {
+  display: inline-block;
   font-size: 14px;
-  margin-bottom: 6px;
   font-weight: 700;
+  margin-right: 12px;
 }
 
 .content {
