@@ -14,7 +14,7 @@ const Twitszuk = () => {
     <div className={styles.Twitszuk}>
       {user && <Nav />}
       <Login />
-      <h1>Twitszuk</h1>
+      {user && <h1>Twitszuk</h1>}
       <div className={styles.postConsole}>
         {user && <Writer />}
         {user && <Posts />}
