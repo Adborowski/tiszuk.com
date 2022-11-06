@@ -8,13 +8,11 @@ import styles from "/src/App.module.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <div className={styles.main}>
-      <Router>
-        <Routes>
-          <Route path="/" element={<App />} />
-          <Route path="/twitszuk" element={<Twitszuk />} />
-        </Routes>
-      </Router>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<App />} />
+        <Route path="/twitszuk" element={<Twitszuk />} />
+      </Routes>
+    </Router>
   </React.StrictMode>
 );

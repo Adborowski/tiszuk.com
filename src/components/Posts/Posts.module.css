@@ -1,8 +1,6 @@
 .Posts {
   max-width: 500px;
   margin: auto;
-  overflow: scroll;
-  max-height: 650px;
 }
 
 .post {

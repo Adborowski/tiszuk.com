@@ -32,7 +32,6 @@
 }
 
 body {
-  height: 100vw;
   background: linear-gradient(
     124deg,
     #ff9888,
@@ -64,6 +63,7 @@ body {
 
 .main {
   max-height: 100vh;
+  overflow: hidden;
   padding: 12px;
 }
 
@@ -99,6 +99,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: center;
