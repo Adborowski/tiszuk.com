@@ -9,8 +9,8 @@ import {
   signInWithPopup,
   getRedirectResult,
 } from "firebase/auth";
-
-import "firebaseui/dist/firebaseui.css";
+import { useAuthState } from "react-firebase-hooks/auth";
+import Login from "/src/components/Login/Login";
 
 import {
   getFirestore,
@@ -38,47 +38,15 @@ const db = getFirestore(app);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-    // User is signed in, see docs for a list of available properties
-    // https://firebase.google.com/docs/reference/js/firebase.User
-    const uid = user.uid;
-    console.log("user has logged in");
-    // ...
-  } else {
-    // User is signed out
-    // ...
-  }
-});
-
 const postsRef = collection(db, "posts");
 const q = query(postsRef);
 
 const Posts = () => {
-  const login = () => {
-    console.log("Trying to log in...");
-
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
-        const user = result.user;
-        setUser(result.user);
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        const email = error.customData.email;
-        const credential = GoogleAuthProvider.credentialFromError(error);
-      });
-  };
-
-  const [user, setUser] = useState();
   const [posts, setPosts] = useState([]);
+  const [user, loading, error] = useAuthState(auth);
 
   useEffect(() => {
-    console.log("SIGN IN DETECTED:");
-    console.log(user);
+    console.log(user ? "Authed user: " + user.displayName : "No Auth");
   }, [user]);
 
   const fetchPosts = async () => {
@@ -120,6 +88,7 @@ const Posts = () => {
 
   return (
     <div className={styles.Posts}>
+      <Login />
       {posts.map((post) => {
         return (
           <div className={styles.post} key={post.content}>
@@ -145,17 +114,6 @@ const Posts = () => {
           ></input>
           <button type="submit">Submit </button>
         </form>
-
-        <div onClick={login} className={styles.btnLogin}>
-          LOG IN
-        </div>
-        <div className={styles.userProfile}>
-          <div className={styles.userInfo}>{user ? user.displayName : ""}</div>
-          <div className={styles.userInfo}>{user ? user.email : ""}</div>
-          <div className={styles.userInfo}>
-            {user ? <img src={user.photoUrl} /> : ""}
-          </div>
-        </div>
       </div>
     </div>
   );

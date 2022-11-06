@@ -1,0 +1,22 @@
+.authControls {
+  background-color: white;
+  padding: 18px;
+  width: 300px;
+  border-radius: 3px;
+  margin: auto;
+  margin-bottom: 60px;
+  position: relative;
+  z-index: 5000;
+}
+
+.authControls button {
+  padding: 6px;
+  width: 100%;
+  border: 0;
+  border-radius: 50px;
+}
+
+.authControls .welcome {
+  margin-bottom: 12px;
+  text-align: center;
+}

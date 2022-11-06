@@ -1,5 +1,6 @@
 import styles from "./App.module.css";
-import Frame from "./components/Frame/Frame";
+import Frame from "/src/components/Frame/Frame";
+import Login from "/src/components//Login/Login";
 
 function App() {
   let frames = [];
@@ -10,6 +11,10 @@ function App() {
 
   return (
     <div className={styles.App}>
+      <div className={styles.controls}>
+        <Login />
+      </div>
+
       <div className={styles.graphics}>
         <div className={styles.rings}>
           <div className={styles.ring}></div>
