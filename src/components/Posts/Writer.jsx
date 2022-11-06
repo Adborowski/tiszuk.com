@@ -11,6 +11,15 @@ import {
   where,
 } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
+import { useAuthState } from "react-firebase-hooks/auth";
+
+import {
+  getAuth,
+  onAuthStateChanged,
+  GoogleAuthProvider,
+  signInWithPopup,
+  getRedirectResult,
+} from "firebase/auth";
 
 const Writer = () => {
   const firebaseConfig = {
@@ -24,6 +33,9 @@ const Writer = () => {
 
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
+  const auth = getAuth(app);
+
+  const [user, loading, error] = useAuthState(auth);
 
   const submitForm = (e) => {
     e.preventDefault();

@@ -55,7 +55,6 @@ const Posts = () => {
         ...doc.data(),
         id: doc.id,
       }));
-      console.log(newData);
       setPosts(newData);
     });
   };
@@ -64,13 +63,34 @@ const Posts = () => {
     fetchPosts();
   }, []);
 
+  const getDayOfWeek = (timestamp) => {
+    var a = new Date(timestamp);
+    var days = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+    var dayOfWeek = days[a.getDay()];
+
+    return dayOfWeek;
+  };
+
+  const sortedPosts = posts.sort((a, b) => b.timestamp - a.timestamp);
+
   return (
     <div className={styles.Posts}>
-      {posts.map((post) => {
+      {sortedPosts.map((post) => {
         return (
           <div className={styles.post} key={post.content}>
             <div className={styles.date}>
-              <SimpleDateTime>{post.timestamp / 1000}</SimpleDateTime>
+              {getDayOfWeek(post.timestamp)}{" "}
+              <SimpleDateTime dateSeparator={"/"} timeSeparator={":"}>
+                {post.timestamp / 1000}
+              </SimpleDateTime>
             </div>
             <div className={styles.author}>{post.name}</div>
             {post.content}
