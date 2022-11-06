@@ -49,6 +49,7 @@
 }
 
 .author {
+  font-family: var(--font-body);
   display: inline-block;
   font-size: 14px;
   font-weight: 700;

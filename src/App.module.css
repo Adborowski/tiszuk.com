@@ -16,8 +16,14 @@
   src: url("/Basteleur.otf") format("opentype");
 }
 
+@font-face {
+  font-family: "Uncut";
+  src: url("/Uncut.ttf") format("truetype");
+}
+
 :root {
   --font-display: "Basteleur";
+  --font-body: "Uncut";
 }
 
 .Twitszuk {
@@ -33,6 +39,7 @@
 
 body {
   height: 100vh;
+  width: 100vw;
   background: linear-gradient(
     124deg,
     #ff9888,
@@ -54,7 +61,6 @@ body {
 }
 
 .App {
-  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -83,6 +89,13 @@ body {
 
 .postConsole {
   width: 100%;
+}
+
+.graphics {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .frames {

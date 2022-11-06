@@ -17,9 +17,7 @@ function App() {
   return (
     <div className={styles.App}>
       <div className={styles.navPane}>{user && <Nav />}</div>
-
       <Login />
-
       <div className={styles.graphics}>
         <div className={styles.rings}>
           <div className={styles.ring}></div>
