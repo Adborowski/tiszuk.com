@@ -12,7 +12,6 @@
   display: grid;
   grid-template-columns: 75px 1fr;
   grid-gap: 12px;
-  animation: fadeIn 1s forwards;
 }
 
 @keyframes fadeIn {

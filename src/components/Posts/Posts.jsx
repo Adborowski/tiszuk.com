@@ -11,6 +11,7 @@ import {
 } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Login from "/src/components/Login/Login";
+import { v4 as uuidv4 } from "uuid";
 
 import {
   getFirestore,
@@ -80,6 +81,14 @@ const Posts = () => {
 
   const deletePost = async (id) => {
     console.log(id);
+    const q = query(collection(db, "posts"), where("id", "==", id));
+    const querySnapshot = await getDocs(q);
+    let docId = "";
+    querySnapshot.forEach((doc) => {
+      console.log(doc.id);
+      docId = doc.id;
+    });
+    deleteDoc(doc(db, "posts", docId));
   };
 
   const sortedPosts = posts.sort((a, b) => b.timestamp - a.timestamp);
@@ -87,7 +96,7 @@ const Posts = () => {
     <div className={styles.Posts}>
       {sortedPosts.map((post) => {
         return (
-          <div className={styles.post} key={post.content}>
+          <div className={styles.post} key={post.content + uuidv4()}>
             <div className={styles.imageContent}>
               <img src={post.imgUrl}></img>
             </div>
