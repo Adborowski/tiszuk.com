@@ -97,7 +97,7 @@ const Posts = () => {
                 </SimpleDateTime>
               </div>
               <div className={styles.author}>{post.name}</div>
-              {post.content}
+              <div className={styles.content}> {post.content}</div>
             </div>
           </div>
         );
