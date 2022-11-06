@@ -2,6 +2,7 @@ import styles from "./Posts.module.css";
 import { initializeApp } from "firebase/app";
 import { useState, useEffect } from "react";
 import SimpleDateTime from "react-simple-timestamp-to-date";
+import { getAuth } from "firebase/auth";
 
 import {
   getFirestore,
@@ -26,6 +27,7 @@ const firebaseConfig = {
 const firebase = initializeApp(firebaseConfig);
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const auth = getAuth(app);
 
 const postsRef = collection(db, "posts");
 const q = query(postsRef);
