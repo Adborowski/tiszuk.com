@@ -12,6 +12,7 @@ import {
 } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { v4 as uuidv4 } from "uuid";
 
 import {
   getAuth,
@@ -43,6 +44,7 @@ const Writer = () => {
   const submitForm = (e) => {
     e.preventDefault();
     const docRef = addDoc(collection(db, "posts"), {
+      id: uuidv4(),
       name: user.displayName,
       content: content,
       imgUrl: user.photoURL,

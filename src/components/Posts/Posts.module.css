@@ -46,7 +46,7 @@
   font-size: 14px;
   display: inline-block;
   text-align: left;
-  /* color: white; */
+  margin-right: 12px;
 }
 
 .author {
@@ -54,6 +54,17 @@
   font-size: 14px;
   font-weight: 700;
   margin-right: 12px;
+}
+
+.btnDelete {
+  display: inline-block;
+  font-size: 14px;
+  color: darkred;
+}
+
+.btnDelete:hover {
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .content {

@@ -22,6 +22,8 @@ import {
   query,
   where,
   onSnapshot,
+  deleteDoc,
+  getDoc,
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -48,16 +50,16 @@ const Posts = () => {
   }, [user]);
 
   const q = query(collection(db, "posts"));
-  const unsubscribe = onSnapshot(q, (querySnapshot) => {
-    const posts = [];
-    querySnapshot.forEach((doc) => {
-      posts.push(doc.data());
-    });
-    setPosts(posts);
-  });
 
   useEffect(() => {
-    unsubscribe;
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      const posts = [];
+      querySnapshot.forEach((doc) => {
+        posts.push(doc.data());
+      });
+      setPosts(posts);
+      console.log(posts);
+    });
   }, []);
 
   const getDayOfWeek = (timestamp) => {
@@ -76,8 +78,11 @@ const Posts = () => {
     return dayOfWeek;
   };
 
-  const sortedPosts = posts.sort((a, b) => b.timestamp - a.timestamp);
+  const deletePost = async (id) => {
+    console.log(id);
+  };
 
+  const sortedPosts = posts.sort((a, b) => b.timestamp - a.timestamp);
   return (
     <div className={styles.Posts}>
       {sortedPosts.map((post) => {
@@ -90,11 +95,22 @@ const Posts = () => {
               <section className={styles.postMetadata}>
                 <div className={styles.author}>{post.name}</div>
                 <div className={styles.date}>
-                  {getDayOfWeek(post.timestamp)}{" "}
+                  {getDayOfWeek(post.timestamp)}
+                  {", "}
                   <SimpleDateTime dateSeparator={"/"} timeSeparator={":"}>
                     {post.timestamp / 1000}
                   </SimpleDateTime>
                 </div>
+                {user.displayName == post.name && (
+                  <div
+                    onClick={() => {
+                      deletePost(post.id);
+                    }}
+                    className={styles.btnDelete}
+                  >
+                    <span>Delete</span>
+                  </div>
+                )}
               </section>
               <div className={styles.content}> {post.content}</div>
             </div>
