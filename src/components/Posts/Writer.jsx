@@ -1,5 +1,5 @@
 import styles from "./Posts.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   getFirestore,
   collection,
@@ -36,12 +36,16 @@ const Writer = () => {
   const auth = getAuth(app);
 
   const [user, loading, error] = useAuthState(auth);
+  useEffect(() => {
+    // console.log(user);
+  }, [user]);
 
   const submitForm = (e) => {
     e.preventDefault();
     const docRef = addDoc(collection(db, "posts"), {
-      name: author,
+      name: user.displayName,
       content: content,
+      imgUrl: user.photoURL,
       timestamp: Date.now(),
     }).then((response) => {
       console.log("Document written with ID: ", response.id);
@@ -61,12 +65,6 @@ const Writer = () => {
   return (
     <div className={styles.Writer}>
       <form onSubmit={submitForm}>
-        <input
-          className={styles.name}
-          placeholder="Your Name"
-          onChange={onAuthorChange}
-          name="author"
-        ></input>
         <textarea
           className={styles.message}
           placeholder="Your Message"

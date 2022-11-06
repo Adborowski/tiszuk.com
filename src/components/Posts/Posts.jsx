@@ -86,14 +86,19 @@ const Posts = () => {
       {sortedPosts.map((post) => {
         return (
           <div className={styles.post} key={post.content}>
-            <div className={styles.date}>
-              {getDayOfWeek(post.timestamp)}{" "}
-              <SimpleDateTime dateSeparator={"/"} timeSeparator={":"}>
-                {post.timestamp / 1000}
-              </SimpleDateTime>
+            <div className={styles.imageContent}>
+              <img src={post.imgUrl}></img>
             </div>
-            <div className={styles.author}>{post.name}</div>
-            {post.content}
+            <div className={styles.textContent}>
+              <div className={styles.date}>
+                {getDayOfWeek(post.timestamp)}{" "}
+                <SimpleDateTime dateSeparator={"/"} timeSeparator={":"}>
+                  {post.timestamp / 1000}
+                </SimpleDateTime>
+              </div>
+              <div className={styles.author}>{post.name}</div>
+              {post.content}
+            </div>
           </div>
         );
       })}

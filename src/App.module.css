@@ -33,13 +33,6 @@ body {
   animation: rainbow 60s ease infinite;
 }
 
-:global(.main) {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 100vh;
-}
-
 .App {
   height: 100vh;
   display: flex;
@@ -47,6 +40,14 @@ body {
   justify-content: center;
   overflow: hidden;
   position: relative;
+}
+
+.main {
+  max-height: 100vh;
+}
+
+.postConsole {
+  width: 100%;
 }
 
 .frames {

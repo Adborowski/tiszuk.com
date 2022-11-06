@@ -14,8 +14,10 @@ const Twitszuk = () => {
     <div className={styles.Twitszuk}>
       {user && <Nav />}
       <Login />
-      {user && <Writer />}
-      {user && <Posts />}
+      <div className={styles.postConsole}>
+        {user && <Writer />}
+        {user && <Posts />}
+      </div>
     </div>
   );
 };
