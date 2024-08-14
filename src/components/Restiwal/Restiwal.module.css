@@ -1,0 +1,371 @@
+/* Define the font face */
+@font-face {
+  font-family: "Agrandir GrandHeavy";
+  src: url("Agrandir-GrandHeavy.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Agrandir Grand";
+  src: url("Agrandir-Grand.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: "Agrandir GrandHeavy", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #db95c1;
+  overflow: hidden;
+}
+
+.a3-container {
+  width: 100vw; /* Start with full viewport width */
+  height: calc(100vw * 1.414); /* Calculate height based on A3 aspect ratio */
+  max-height: 100vh; /* Ensure it does not exceed viewport height */
+  max-width: calc(
+    100vh / 1.414
+  ); /* Ensure it does not exceed calculated width */
+  position: relative;
+  /* background-color: #fff; */
+  perspective: 1000px; /* Needed for 3D effect */
+}
+
+.a3-container img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.a3-container #overlay-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#overlay-layer {
+  background-color: #db95c1;
+  mix-blend-mode: normal;
+  display: none; /* Hidden by default */
+}
+
+/* Poster flip container */
+.poster {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.8s ease;
+}
+
+/* Front and back sides of the poster */
+.poster-front,
+.poster-back {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  backface-visibility: hidden;
+}
+
+.poster-back {
+  transform: rotateY(180deg);
+  background: linear-gradient(to top, #2f7738 -25%, #ffe400 20%);
+  color: #db95c1;
+  display: flex;
+  justify-content: center;
+}
+
+/* Flipped state */
+.flipped {
+  transform: rotateY(180deg);
+}
+
+.back-content {
+  padding: 14px;
+}
+
+.back-content ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.back-content h1 {
+  font-size: 32px;
+  text-transform: uppercase;
+  color: #2f7738;
+  line-height: 1;
+  margin: 0 0 25px 0;
+}
+
+.back-content ul p {
+  font-family: "Agrandir Grand";
+  color: #2f7738;
+  font-size: 21px;
+  margin: 0 0 10px 0;
+}
+
+.back-content ul p em {
+  font-family: "Agrandir GrandHeavy";
+  color: #db95c1;
+  font-style: normal;
+}
+
+@media screen and (max-width: 640px) {
+  .back-content h1 {
+    font-size: 24px;
+  }
+
+  .back-content ul p {
+    font-size: 18px;
+  }
+}
+
+.text-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 10px;
+  gap: 10px;
+  box-sizing: border-box;
+}
+
+.text-container .text-block {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.text-container .line {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+}
+
+.text-container .word {
+  display: flex;
+  align-items: center;
+}
+
+.interactive-svg {
+  height: auto;
+  /* transition: all 0.3s ease; */
+}
+
+.text-container svg {
+  height: auto;
+  width: 100%;
+  max-height: 33px;
+}
+
+svg g .cls-1 {
+  stroke-miterlimit: 10;
+  stroke-width: 1.75px;
+  fill-opacity: 0;
+  stroke-opacity: 0;
+  transition: stroke-opacity 0.2s;
+}
+
+.a3-container:hover svg g .cls-1 {
+  stroke-opacity: 1;
+}
+
+.word.yellow svg g .cls-1 {
+  fill: #ffe400;
+  stroke: #ffe400;
+}
+
+.word.pink svg g .cls-1 {
+  fill: #db95c1;
+  stroke: #db95c1;
+}
+
+.word.filled svg g .cls-1 {
+  fill-opacity: 1;
+}
+
+.word.hidden {
+  opacity: 0;
+}
+
+.interactive-svg:hover g .cls-1 {
+  fill-opacity: 1; /* Adjust to your desired opacity */
+}
+
+/* .word.bingo svg g .cls-1 {
+    fill-opacity: 1;
+} */
+
+/* .word.bingo {
+    transform: scale(1.1);
+} */
+
+#trigger-button {
+  position: absolute;
+  border: 2px solid #ffe400;
+  background: transparent;
+  color: #ffe400;
+  padding: 12px 20px;
+  font-family: "Agrandir GrandHeavy", sans-serif;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Button hover effect */
+#trigger-button:hover {
+  background-color: #ffe400;
+  color: #2f7738;
+}
+
+@media (min-aspect-ratio: 1/1) {
+  /* Horizontal or square screens */
+  #trigger-button {
+    top: 50%;
+    right: -2px;
+    transform: translateY(-50%);
+  }
+}
+
+@media (max-aspect-ratio: 1/1) {
+  /* Vertical screens */
+  #trigger-button {
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .text-container svg {
+    max-height: 30px;
+  }
+  .text-container .text-block {
+    gap: 4px;
+  }
+  .text-container {
+    padding: 5px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .text-container svg {
+    max-height: 26px;
+  }
+  .text-container .text-block {
+    gap: 3px;
+  }
+  .text-container {
+    padding: 3px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .text-container svg {
+    max-height: 23px;
+  }
+  .text-container .text-block {
+    gap: 2px;
+  }
+  .text-container {
+    padding: 1px;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .text-container svg {
+    max-height: 20px;
+  }
+  .text-container .text-block {
+    gap: 0px;
+  }
+  .text-container {
+    padding: 0px;
+  }
+}
+
+@media screen and (max-height: 890px) {
+  .text-container svg {
+    max-height: 30px;
+  }
+  .text-container .text-block {
+    gap: 4px;
+  }
+  .text-container {
+    padding: 5px;
+  }
+}
+
+@media screen and (max-height: 700px) {
+  .text-container svg {
+    max-height: 26px;
+  }
+  .text-container .text-block {
+    gap: 3px;
+  }
+  .text-container {
+    padding: 3px;
+  }
+}
+
+@media screen and (max-height: 590px) {
+  .text-container svg {
+    max-height: 23px;
+  }
+  .text-container .text-block {
+    gap: 2px;
+  }
+  .text-container {
+    padding: 1px;
+  }
+}
+
+@media screen and (max-height: 460px) {
+  .text-container svg {
+    max-height: 20px;
+  }
+  .text-container .text-block {
+    gap: 0px;
+  }
+  .text-container {
+    padding: 0px;
+  }
+}
+
+@keyframes stroke-animation {
+  0% {
+    stroke-dashoffset: 0;
+  }
+
+  50% {
+    stroke-dashoffset: 100;
+  }
+
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.interactive-svg {
+  stroke-dasharray: 100; /* This value should be large enough to cover the entire path length */
+  animation: stroke-animation 2s ease infinite; /* Adjust the duration and other properties as needed */
+}
